@@ -91,14 +91,15 @@ GitHub の自分の fork で、`lec01` → `main` の PR を作成します。**
 AIE_MODEL=gemini-3.5-flash uv run python -m app.ask "LoRAとは何ですか？"
 ```
 
-複数のモデルと質問を比較する例：
+### 呼び出すモデルについての補足
+モデルの仕様は更新されることがあります。  
+gemini 3.5 flashにおいては、Gemini APIのドキュメントが更新され、非推奨となりgemini 3.6 flashへ転送されるようになりました。
 
-```bash
-uv run python -m app.ask --benchmark \
-  --models gemini-3.5-flash-lite gemini-3.5-flash \
-  --benchmark-questions "LoRAとは何ですか？" "AIE2026の講座の宿題にある「3レベル」とは何ですか？"
-```
+- 参考：Gemini 3.5 Flashのドキュメント
+https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash?hl=ja
 
-比較はモデルと質問の組み合わせごとに1回ずつ API を呼び出します。無料枠のレート制限に達すると比較はエラーで中断するため、結果を記録し、必要なら時間をおいて再実行してください。レート制限はモデルや利用状況によって異なるので、呼び出し数・待ち時間・中断の有無を記録して考察しましょう。
+このように、サービスとして提供されているLLMは頻繁に仕様が変わるため、サービス仕様のドキュメントを確認するなどの習慣を付けておき仕様変更に対応しましょう。
+
+第1回の宿題においては、任意にモデルを変えて実施していただければ問題ありません。
 
 temperature を変えるには、`generate_content` の `config` 引数を調べてみましょう。
